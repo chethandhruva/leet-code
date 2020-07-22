@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var zigzagLevelOrder = function(root) {
+    if(root == null){
+        return [];
+    }
+    let queue = [];
+    const ans = [];
+    queue.push(root);
+  
+    let zigzag = false;
+    while(queue.length > 0) {
+        let temp = [];
+        const size = queue.length;
+        for (let i = 0; i < size; i++) {
+            const node = queue[0];
+            queue = queue.slice(1);
+            if (zigzag) {
+                temp.unshift(node.val);
+            } else { 
+                temp.push(node.val);
+            }
+            if (node.left != null) {
+                queue.push(node.left);
+            }
+                
+            if (node.right != null) {
+                queue.push(node.right);
+            }
+            
+        }
+         ans.push(temp);
+         zigzag = !zigzag;
+    }
+    return ans;
+}
+      
