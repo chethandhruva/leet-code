@@ -1,0 +1,59 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> ans;
+        int n = digits.length();
+        if(n == 0) return ans;
+        
+        map<string, vector<string>> box;
+        vector<string> data_2{ "a","b","c" };
+        vector<string> data_3{ "d","e","f" };
+        vector<string> data_4{ "g","h","i" };
+        vector<string> data_5{ "j","k","l" };
+        vector<string> data_6{ "m","n","o" };
+        vector<string> data_7{ "p","q","r","s" };
+        vector<string> data_8{ "t","u","v" };
+        vector<string> data_9{ "w","x","y","z" };
+     
+        box["2"] = data_2;
+        box["3"] = data_3;
+        box["4"] = data_4;
+        box["5"] = data_5;
+        box["6"] = data_6;
+        box["7"] = data_7;
+        box["8"] = data_8;
+        box["9"] = data_9;
+        
+        string sing;
+        sing = digits[0];
+         if(n == 1) return box[sing];
+        
+        string temp;
+        vector<string> tempv;
+        
+        string temp2,lol;
+        vector<string> tempv2;
+        
+             temp = digits[0];
+            tempv = box[temp];
+        
+        for(int i=1; i<n; i++) {
+       
+            temp2 = digits[i];
+            tempv2 = box[temp2];
+            
+            for(auto& it : tempv) {
+                cout<<"it\t"<<it<<"\n";
+                  for(auto& it2 : tempv2) {
+                      cout<<"it2\t"<<it2<<"\n";
+                      lol = it + it2;
+                      ans.push_back(lol);
+                  }  
+            }
+            tempv = ans;
+            ans.clear();
+        }
+        
+     return tempv;   
+    }
+};
